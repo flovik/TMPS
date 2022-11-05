@@ -3,6 +3,7 @@
 using System.Security.AccessControl;
 using StructuralDesignPatterns.Adapter;
 using StructuralDesignPatterns.Adapter.Interfaces;
+using StructuralDesignPatterns.Composite;
 using StructuralDesignPatterns.Decorator.Components;
 using StructuralDesignPatterns.Decorator.DecoratorObjects;
 using StructuralDesignPatterns.Facade;
@@ -58,3 +59,31 @@ ICar adapter = new CarAdapter(new CarCreator());
 var car = adapter.CreateCar();
 
 //composite
+var root = new ManagerComposite("Vasile Albie");
+var manager1 = new ManagerComposite("Manager 1");
+var manager2 = new ManagerComposite("Manager 2");
+var manager3 = new ManagerComposite("Manager 3");
+
+var programmer1 = new ProgrammerLeaf("Programmer1");
+var programmer2 = new ProgrammerLeaf("Programmer2");
+var programmer3 = new ProgrammerLeaf("Programmer3");
+
+root.AddWorker(manager1);
+root.AddWorker(manager2);
+
+manager1.AddWorker(programmer1);
+
+manager2.AddWorker(manager3);
+manager2.AddWorker(programmer2);
+
+manager3.AddWorker(programmer3);
+
+var it = new TreeIterator();
+it.IterateTree(root);
+
+/*
+              root 
+    manager1        manager2
+  programmer1      manager3  programmer2
+                programmer3
+*/
