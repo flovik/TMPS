@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Decorator\DecoratorObjects\" />
+    <Folder Include="Facade\Interfaces\" />
+    <Folder Include="Composite\" />
+    <Folder Include="Adapter\" />
+    <Folder Include="Decorator\Components\" />
+    <Folder Include="Proxy\Interfaces\" />
+  </ItemGroup>
+
+</Project>
