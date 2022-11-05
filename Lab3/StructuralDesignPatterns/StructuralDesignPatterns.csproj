@@ -8,9 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Adapter\Interfaces\" />
+    <Folder Include="Adapter\Models\" />
+    <Folder Include="Composite\Interfaces\" />
     <Folder Include="Decorator\DecoratorObjects\" />
-    <Folder Include="Composite\" />
-    <Folder Include="Adapter\" />
     <Folder Include="Decorator\Components\" />
     <Folder Include="Facade\PrinterComponents\" />
     <Folder Include="Proxy\Interfaces\" />

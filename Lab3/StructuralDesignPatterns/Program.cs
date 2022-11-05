@@ -1,6 +1,8 @@
 ﻿//decorator
 
 using System.Security.AccessControl;
+using StructuralDesignPatterns.Adapter;
+using StructuralDesignPatterns.Adapter.Interfaces;
 using StructuralDesignPatterns.Decorator.Components;
 using StructuralDesignPatterns.Decorator.DecoratorObjects;
 using StructuralDesignPatterns.Facade;
@@ -50,3 +52,9 @@ proxy.CreateUser(new User {Name = "Victor", UserId = id, Photo = a});
 proxy.GetUserPhoto(id); 
 proxy.GetUserPhoto(id);
 proxy.GetUserPhoto(id);
+
+//adapter 
+ICar adapter = new CarAdapter(new CarCreator());
+var car = adapter.CreateCar();
+
+//composite
