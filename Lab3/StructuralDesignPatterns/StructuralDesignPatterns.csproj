@@ -9,11 +9,22 @@
 
   <ItemGroup>
     <Folder Include="Decorator\DecoratorObjects\" />
-    <Folder Include="Facade\Interfaces\" />
     <Folder Include="Composite\" />
     <Folder Include="Adapter\" />
     <Folder Include="Decorator\Components\" />
+    <Folder Include="Facade\PrinterComponents\" />
     <Folder Include="Proxy\Interfaces\" />
+    <Folder Include="Proxy\Models\" />
+    <Folder Include="Proxy\Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
