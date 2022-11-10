@@ -8,11 +8,17 @@ using StructuralDesignPatterns.Decorator.Components;
 using StructuralDesignPatterns.Decorator.DecoratorObjects;
 using StructuralDesignPatterns.Facade;
 using StructuralDesignPatterns.Facade.PrinterComponents;
+using StructuralDesignPatterns.FacadeDecoratorComposite;
+using StructuralDesignPatterns.FacadeDecoratorComposite.Components;
+using StructuralDesignPatterns.FacadeDecoratorComposite.DecoratorObjects;
+using StructuralDesignPatterns.FacadeDecoratorComposite.Interfaces;
 using StructuralDesignPatterns.Proxy;
 using StructuralDesignPatterns.Proxy.Context;
 using StructuralDesignPatterns.Proxy.Interfaces;
 using StructuralDesignPatterns.Proxy.Models;
 using StructuralDesignPatterns.Proxy.Repositories;
+using StructuralDesignPatterns.ProxyAdapter;
+using StructuralDesignPatterns.ProxyAdapter.Interfaces;
 
 Pizza ThiccPizzaWithBaconAndCheese = new ThiccPizza(); //ThiccPizza -> Pizza
 ThiccPizzaWithBaconAndCheese = new Bacon(ThiccPizzaWithBaconAndCheese); //Bacon -> PizzaDecorator -> Pizza
@@ -38,15 +44,14 @@ printer.PrintDocument();
 //adds a new layer between client and database
 //behaves like original object (implements the same contracts), but has some 
 //buffs on top
+//with adapter
 
-using var fs = new FileStream(
-    "D:\\Personal projects\\TMPS\\Lab3\\StructuralDesignPatterns\\Proxy\\a.png",
-    FileMode.OpenOrCreate);
+//adapterProxy
+var path = "C:\\Personal testing\\TMPS\\Lab3\\StructuralDesignPatterns\\Proxy\\a.png";
+ITargetInterface adapterProxy = new ImageReaderAdapter(new ImageReader());
+var a = adapterProxy.ReadImage(path);
+
 var id = Guid.NewGuid();
-using var ms = new MemoryStream();
-fs.CopyTo(ms);
-var a = ms.ToArray();
-
 using var context = new DesignPatternsContext();
 IUserRepository proxy = new UserRepositoryProxy(new UserRepository(context));
 proxy.CreateUser(new User {Name = "Victor", UserId = id, Photo = a});
@@ -87,3 +92,31 @@ it.IterateTree(root);
   programmer1      manager3  programmer2
                 programmer3
 */
+
+
+//decoratorComposite
+Programmer FrontendProgrammerReact = new FrontEndProgrammer("Hi, I am a frontend programmer. ");
+FrontendProgrammerReact = new React(FrontendProgrammerReact);
+
+Programmer backendProgrammerSQLMessageBroker = new BackEndProgrammer("Hi, I am a backend dev. ");
+backendProgrammerSQLMessageBroker = new SQL(backendProgrammerSQLMessageBroker);
+backendProgrammerSQLMessageBroker = new MessageBroker(backendProgrammerSQLMessageBroker);
+
+Programmer FrontendProgrammerAngularReact = new FrontEndProgrammer("Hi hi.");
+FrontendProgrammerAngularReact = new Angular(FrontendProgrammerAngularReact);
+FrontendProgrammerAngularReact = new React(FrontendProgrammerAngularReact);
+
+var bigManager = new ProgrammersManagerComposite("Serioja");
+var backendTeamManager = new ProgrammersManagerComposite("Back end manager");
+var frontendTeamManager = new ProgrammersManagerComposite("Front end manager");
+
+bigManager.AddWorker(backendTeamManager);
+bigManager.AddWorker(frontendTeamManager);
+
+frontendTeamManager.AddWorker(FrontendProgrammerAngularReact);
+frontendTeamManager.AddWorker(FrontendProgrammerReact);
+
+backendTeamManager.AddWorker(backendProgrammerSQLMessageBroker);
+
+var programmerIterator = new WorkersIterator();
+programmerIterator.IterateTree(bigManager);

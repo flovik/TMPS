@@ -14,6 +14,7 @@
     <Folder Include="Decorator\DecoratorObjects\" />
     <Folder Include="Decorator\Components\" />
     <Folder Include="Facade\PrinterComponents\" />
+    <Folder Include="ProxyAdapter\Interfaces\" />
     <Folder Include="Proxy\Interfaces\" />
     <Folder Include="Proxy\Models\" />
     <Folder Include="Proxy\Repositories\" />
