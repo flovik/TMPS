@@ -1,5 +1,6 @@
 ﻿//template method - we have an algorithm that subclasses may or may not override, they can change their behaviour but not the algorithm's steps
 
+using BehavioralDesignPatterns.Observer;
 using BehavioralDesignPatterns.Strategy;
 using BehavioralDesignPatterns.TemplateMethod;
 
@@ -18,3 +19,14 @@ sorter.Sort(new List<int>());
 
 sorter.ChangeStrategy(new CountingSort());
 sorter.Sort(new List<int>());
+
+//observer - defines a subscription mechanism to notify multiple subscribers if 
+//some events in the class are changing
+FacebookGroup facebook = new FacebookGroup();
+//new post created, notify
+facebook.NewPost();
+var sub = new Subscriber(facebook, "Victor");
+facebook.NotifySubscribers();
+
+sub.UnSubscribe();
+facebook.NotifySubscribers();
