@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="State\" />
     <Folder Include="Observer\" />
     <Folder Include="TemplateMethod\" />
   </ItemGroup>

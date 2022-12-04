@@ -2,6 +2,7 @@
 
 using BehavioralDesignPatterns.Mediator;
 using BehavioralDesignPatterns.Observer;
+using BehavioralDesignPatterns.State;
 using BehavioralDesignPatterns.Strategy;
 using BehavioralDesignPatterns.TemplateMethod;
 
@@ -45,3 +46,12 @@ mediator.AddUser(user3);
 
 user2.SendEmail("Aleo");
 user1.SendEmail("Aleo, Serioja");
+
+//state - lets change the behaviour of a class when the state changes
+var notepad = new Notepad();
+notepad.AddTextWithStyle("Text scris in default. ");
+notepad.ChangeState(new UpperCaseState());
+notepad.AddTextWithStyle("Acest text va fi reprezentat in uppercase. ");
+notepad.ChangeState(new BoldCaseState());
+notepad.AddTextWithStyle("Da acesta e text in bold");
+Console.WriteLine(notepad.Text);
