@@ -1,5 +1,6 @@
 ﻿//template method - we have an algorithm that subclasses may or may not override, they can change their behaviour but not the algorithm's steps
 
+using BehavioralDesignPatterns.Mediator;
 using BehavioralDesignPatterns.Observer;
 using BehavioralDesignPatterns.Strategy;
 using BehavioralDesignPatterns.TemplateMethod;
@@ -30,3 +31,17 @@ facebook.NotifySubscribers();
 
 sub.UnSubscribe();
 facebook.NotifySubscribers();
+
+//mediator - reduces dependencies between objects. No direct communication is established
+//between objects, and they talk with each other via a mediator.
+
+var mediator = new EmailMediator();
+var user1 = new User("Victor", mediator);
+var user2 = new User("Pechea", mediator);
+var user3 = new User("Serioja", mediator);
+
+mediator.AddUser(user1);
+mediator.AddUser(user3);
+
+user2.SendEmail("Aleo");
+user1.SendEmail("Aleo, Serioja");
